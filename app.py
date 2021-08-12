@@ -1,7 +1,17 @@
-from flask import Flask, redirect, url_for, render_template, request
+from flask import Flask, redirect, url_for, render_template, request, Response
+import matplotlib.pyplot as plt
+import io
+from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
+import pandas as pd
+from matplotlib.figure import Figure
+import numpy as np
+
 
 app = Flask(__name__)
 arr = [1, 2, 3, 4]
+
+plt.rcParams["figure.figsize"] = [7.50, 3.50]
+plt.rcParams["figure.autolayout"] = True
 
 
 @app.route('/home')
@@ -9,7 +19,19 @@ def test():
     return render_template("index.html")
 
 
-@app.route('/bubble_sort')
+@app.route('/plot.png')
+def plot_png():
+    fig = Figure()
+    axis = fig.add_subplot(1, 1, 1)
+    xs = np.random.rand(100)
+    ys = np.random.rand(100)
+    axis.plot(xs, ys)
+    output = io.BytesIO()
+    FigureCanvas(fig).print_png(output)
+    return Response(output.getvalue(), mimetype='image/png')
+
+
+@app.route('/bubble_sort', methods=("POST", "GET"))
 def bubble():
     return render_template("bubble.html")
 
