@@ -1,11 +1,13 @@
-from flask import Flask, redirect, url_for, render_template, request, Response
+from flask import Flask, redirect, url_for, render_template, request, Response, make_response
 import matplotlib.pyplot as plt
+import json
 import io
 from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
 import pandas as pd
 from matplotlib.figure import Figure
 import numpy as np
-
+from time import time
+from random import random
 
 app = Flask(__name__)
 arr = [1, 2, 3, 4]
@@ -17,6 +19,14 @@ plt.rcParams["figure.autolayout"] = True
 @app.route('/home')
 def test():
     return render_template("index.html")
+
+
+@app.route('/live-data')
+def live_data():
+    data = [time() * 100, random() * 100]
+    response = make_response(json.dumps(data))
+    response.content_type = 'application/json'
+    return response
 
 
 @app.route('/plot.png')
