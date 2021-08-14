@@ -8,12 +8,15 @@ from matplotlib.figure import Figure
 import numpy as np
 from time import time
 from random import random
+from main import bubble_sort
+from main import randomArray
+from main import selection_sort
+from main import merge_sort
 
 app = Flask(__name__)
-arr = [1, 2, 3, 4]
-
-plt.rcParams["figure.figsize"] = [7.50, 3.50]
-plt.rcParams["figure.autolayout"] = True
+arr = randomArray(20)
+i = 0
+num = -1
 
 
 @app.route('/home')
@@ -21,11 +24,45 @@ def test():
     return render_template("index.html")
 
 
-@app.route('/live-data')
-def live_data():
-    data = [time() * 100, random() * 100]
+@app.route('/live-data-bubble')
+def live_data_bubble():
+    global arr
+    global i
+    data = [i, arr[i]]
     response = make_response(json.dumps(data))
     response.content_type = 'application/json'
+    i += 1
+    if i == len(arr):
+        arr = bubble_sort(arr)
+        i = 0
+    return response
+
+
+@app.route('/live-data-selection')
+def live_data_selection():
+    global arr
+    global i
+    data = [i, arr[i]]
+    response = make_response(json.dumps(data))
+    response.content_type = 'application/json'
+    i += 1
+    if i == len(arr):
+        arr = selection_sort(arr)
+        i = 0
+    return response
+
+
+@app.route('/live-data-merge')
+def live_data_merge():
+    global arr
+    global i
+    data = [i, arr[i]]
+    response = make_response(json.dumps(data))
+    response.content_type = 'application/json'
+    i += 1
+    if i == len(arr):
+        arr = merge_sort(arr)
+        i = 0
     return response
 
 
@@ -43,27 +80,37 @@ def plot_png():
 
 @app.route('/bubble_sort', methods=("POST", "GET"))
 def bubble():
+    global arr
+    global i
+    global num
+    arr = randomArray(20)
+    i = 0
+    num = -1
     return render_template("bubble.html")
 
 
 @app.route('/merge_sort')
 def merge():
+    global arr
+    global i
+    global num
+    arr = randomArray(20)
+    i = 0
+    num = -1
     return render_template("merge.html")
 
 
 @app.route("/selection_sort")
 def selection():
+    global arr
+    global i
+    global num
+    arr = randomArray(20)
+    i = 0
+    num = -1
     return render_template("selection.html")
 
 
-@app.route("/<usr>")
-def user(usr):
-    return "<h1>" + usr + "</h1>"
-
-
-@app.route("/admin")
-def admin():
-    return redirect(url_for("user", name="Logan!"))
 
 
 if __name__ == "__main__":

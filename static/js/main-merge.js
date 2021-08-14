@@ -23,20 +23,20 @@ var series = 0;
 
 function requestData() {
     $.ajax({
-        url: '/live-data-bubble',
+        url: '/live-data-merge',
         success: function(point) {
 
             var series = chart.series[0],
                 shift = series.data.length > 10; // shift if the series is
 
                                                  // longer than 20
-            if(series.data.length < 10){
+            if(series.data.length < 20){
             setTimeout(requestData, 250);
             }
             // add the point
             //chart.series[0].update(point, false);
-            if(series.data.length >= 10){
-            setTimeout(requestData, 0.005);
+            if(series.data.length >= 20){
+            setTimeout(requestData, 250);
             chart.series[0].removePoint(point[0], true);
             }
             chart.series[0].addPoint(point, true, false);

@@ -11,7 +11,7 @@ def bubble_sort(arr):
                 temp = arr[i]
                 arr[i] = arr[i+1]
                 arr[i+1] = temp
-    return arr
+                return arr
 
 
 def merge_sort(arr):
@@ -63,9 +63,8 @@ def randomArray(size):
     return arr
 
 
-root = Tk()
-myButton = Button(root, text="test")
-myButton.pack()
-root.mainloop()
-
-
+# arr = [41, 84, 76, 77, 15, 45, 87, 25, 95, 69]
+#  print(arr)
+# for i in range(50):
+#     arr = bubble_sort(arr)
+#     print(arr)

@@ -23,7 +23,7 @@ var series = 0;
 
 function requestData() {
     $.ajax({
-        url: '/live-data-bubble',
+        url: '/live-data-selection',
         success: function(point) {
 
             var series = chart.series[0],
@@ -36,7 +36,7 @@ function requestData() {
             // add the point
             //chart.series[0].update(point, false);
             if(series.data.length >= 10){
-            setTimeout(requestData, 0.005);
+            setTimeout(requestData, 250);
             chart.series[0].removePoint(point[0], true);
             }
             chart.series[0].addPoint(point, true, false);
