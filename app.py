@@ -1,13 +1,7 @@
 from flask import Flask, redirect, url_for, render_template, request, Response, make_response
-import matplotlib.pyplot as plt
+
 import json
-import io
-from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
-import pandas as pd
-from matplotlib.figure import Figure
-import numpy as np
-from time import time
-from random import random
+
 from main import bubble_sort
 from main import randomArray
 from main import selection_sort
@@ -66,18 +60,6 @@ def live_data_merge():
     return response
 
 
-@app.route('/plot.png')
-def plot_png():
-    fig = Figure()
-    axis = fig.add_subplot(1, 1, 1)
-    xs = np.random.rand(100)
-    ys = np.random.rand(100)
-    axis.plot(xs, ys)
-    output = io.BytesIO()
-    FigureCanvas(fig).print_png(output)
-    return Response(output.getvalue(), mimetype='image/png')
-
-
 @app.route('/bubble_sort', methods=("POST", "GET"))
 def bubble():
     global arr
@@ -109,8 +91,6 @@ def selection():
     i = 0
     num = -1
     return render_template("selection.html")
-
-
 
 
 if __name__ == "__main__":

@@ -1,5 +1,5 @@
 import random
-from tkinter import *
+
 
 
 def bubble_sort(arr):
@@ -62,9 +62,3 @@ def randomArray(size):
        arr.append(random.randint(0, 100))
     return arr
 
-
-# arr = [41, 84, 76, 77, 15, 45, 87, 25, 95, 69]
-#  print(arr)
-# for i in range(50):
-#     arr = bubble_sort(arr)
-#     print(arr)
