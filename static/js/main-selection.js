@@ -36,7 +36,7 @@ function requestData() {
             // add the point
             //chart.series[0].update(point, false);
             if(series.data.length >= 10){
-            setTimeout(requestData, 250);
+            setTimeout(requestData, 0.005);
             chart.series[0].removePoint(point[0], true);
             }
             chart.series[0].addPoint(point, true, false);

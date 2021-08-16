@@ -2,10 +2,10 @@ from flask import Flask, redirect, url_for, render_template, request, Response, 
 
 import json
 
-from main import bubble_sort
-from main import randomArray
-from main import selection_sort
-from main import merge_sort
+from algo import bubble_sort
+from algo import randomArray
+from algo import selection_sort
+from algo import merge_sort
 
 app = Flask(__name__)
 arr = randomArray(20)
@@ -13,7 +13,7 @@ i = 0
 num = -1
 
 
-@app.route('/home')
+@app.route('/')
 def test():
     return render_template("index.html")
 
