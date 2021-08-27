@@ -7,5 +7,5 @@ You will see a webpage that looks like:
 ![alt text](https://github.com/lolostheman/PythonSort/blob/main/snip1.PNG?raw=true)
 Click through the various sorts and watch them sort out live infront of you
 
-# Devloper: Logan Morro (8/14/2021)
+# Developer: Logan Morro (8/14/2021)
 
